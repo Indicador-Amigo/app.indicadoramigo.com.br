@@ -1,0 +1,46 @@
+<ion-modal-view>
+	<ion-header-bar class="bar-assertive">
+		<h1 class="title">Instalação Disponível</h1>
+			<button class="button icon button-clear material-icons" ng-click="closeInstalacaoDisponivel()">&#xE5CD;</button>
+	</ion-header-bar>
+	<ion-content>
+		<form ng-submit="doInstalacaoDisponivel()">
+			<div class="list">
+				<div class="item item-text-wrap">
+					<p>Código de Instalação</p>
+					128459340
+					<p>Data de Instalação</p>
+					15/06/2016
+				</div>
+				<div class="item item-divider item-assertive">
+					Dados do Cliente
+				</div>
+				<div class="item item-text-wrap">
+					<p>Nome</p>
+					Antônio Ferreira Santos
+					<br><br>
+					<p>Endereço</p>
+					R. Montês, 12 - São Gabriel - Belo Horizonte, MG
+					<br><br>
+					<p>Telefone</p>
+					31 3852-8941
+				</div>
+				<div class="item item-divider item-assertive">
+					Preço
+				</div>
+				<label class="item item-input">
+					<span class="input-label">Informe o preço:</span>
+					<input type="number" ng-model="captacaoData.nome" placeholder="0,00">
+				</label>
+				<div class="item item-divider item-assertive">
+					Confirmação
+				</div>
+				<div class="item item-divider item-text-wrap">
+					<p><i class="icon ion-information-circled"></i>  Deseja assumir essa instalação?</p>
+				</div>
+				<label class="item">
+					<button class="button button-block button-assertive" type="submit">Ok</button>
+				</label>
+			</div>
+	</ion-content>
+</ion-modal-view>

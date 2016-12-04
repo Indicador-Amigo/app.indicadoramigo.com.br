@@ -1,0 +1,26 @@
+<ion-view view-title="Indicação">
+	<ion-content>
+		<div class="card list">
+			<div class="item item-divider item-positive">
+				Nova Indicação
+			</div>
+			<div class="item item-divider item-text-wrap">
+				<p>Efetue a indicação de um possível cliente. Se o indicado tiver a venda confirmada, você receberá uma comissão.</p>
+			</div>
+			<div class="item">
+				<button ui-sref="app.captacaoEdit" class="button button-block button-positive">Indicar</button>
+			</div>
+		</div>
+		<div class="card list" ng-show="dados.listaEnviadas.length > 0">
+			<div class="item item-divider item-positive">
+				Indicações Enviadas
+				<span class="badge badge-light">{{dados.listaEnviadas.length}}</span>
+			</div>
+			<div class="item item-text-wrap" ng-repeat="obj in dados.listaEnviadas">
+				{{obj.nome}}
+				<p>{{obj.email}}</p>
+				<p>{{obj.telefone}}</p>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

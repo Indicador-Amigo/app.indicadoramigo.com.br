@@ -1,0 +1,61 @@
+<ion-view ng-controller="CaptacaoEditCtrl" view-title="Nova Indicação">
+	<ion-content>
+		<form ng-submit="salvar()">
+			<div class="list">
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Nome Completo</span>
+					<input type="text" ng-model="form.nome" placeholder="Informe o nome" maxlength="100">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Telefone</span>
+					<input type="tel" ng-model="form.telefone" placeholder="Informe o telefone" maxlength="15">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Email</span>
+					<input type="email" ng-model="form.email" placeholder="Informe o email" maxlength="60">
+				</label>
+				<label class="item item-input item-select">
+					<div class="input-label">Período de Contato</div>
+					<select ng-model="form.periodoContato">
+						<option value="M">Manhã</option>
+						<option value="T">Tarde</option>
+						<option value="N">Noite</option>
+					</select>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Renda</span>
+					<input type="text" ng-model="form.renda" placeholder="Informe a renda" maxlength="10">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Valor da Carta de Crédito</span>
+					<input type="text" ng-model="form.valorCredito" placeholder="Informe o valor da carta" maxlength="10">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Prazo do Consórcio</span>
+					<input type="text" ng-model="form.prazoConsorcio" placeholder="Informe o número de meses" maxlength="10">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Valor da Parcela</span>
+					<input type="text" ng-model="form.valorParcela" placeholder="Informe o valor da parcela" maxlength="10">
+				</label>
+				<!-- <ul>
+					<li class="item item-toggle item-text-wrap">
+						Confirma Contato?
+						<label class="toggle toggle-positive">
+							<input type="checkbox" ng-model="form.confirmaVenda">
+							<div class="track">
+								<div class="handle"></div>
+							</div>
+						</label>
+					</li>
+				</ul> -->
+				<div class="item item-divider item-text-wrap">
+					<p><i class="icon ion-information-circled"></i>  Se um indicado for efetuado, ou seja, ter a venda confirmada, o indicador receberá uma comissão que poderá ser visualizada no <b>Extrato</b>.</p>
+				</div>
+				<label class="item">
+					<button class="button button-block button-positive" type="submit">Enviar</button>
+				</label>
+			</div>
+		</form>
+	</ion-content>
+</ion-view>

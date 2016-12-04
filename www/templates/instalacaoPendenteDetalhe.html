@@ -1,0 +1,53 @@
+<ion-modal-view>
+	<ion-header-bar class="bar-assertive">
+		<h1 class="title">Instalação Pendente</h1>
+			<button class="button icon button-clear material-icons" ng-click="closeInstalacaoPendente()">&#xE5CD;</button>
+	</ion-header-bar>
+	<ion-content>
+		<form ng-submit="doInstalacaoPendente()">
+			<div class="list">
+				<div class="item item-divider item-assertive">
+					Dados da Instalação
+				</div>
+				<div class="item item-text-wrap">
+					<p>Código de Instalação</p>
+					274652972
+					<br><br>
+					<p>Data de Instalação</p>
+					23/06/2016
+					<br><br>
+					<p>Produto</p>
+					DTV Mega Plus
+				</div>
+				<div class="item item-divider item-assertive">
+					Dados do Cliente
+				</div>
+				<div class="item item-text-wrap">
+					<p>Nome</p>
+					Rodrigo de Souza Santos
+					<br><br>
+					<p>Endereço</p>
+					R. Cartio, 143 - São Lucas - Belo Horizonte, MG
+					<br><br>
+					<p>Telefone</p>
+					31 3431-7343
+				</div>
+				<div class="item item-divider item-assertive">
+					Valor
+				</div>
+				<div class="item item-text-wrap">
+					<p>Valor da Instalação</p>
+					R$ 40,00
+				</div>
+				<div class="item item-divider item-assertive">
+					Confirmação
+				</div>
+				<div class="item item-divider item-text-wrap">
+					<p><i class="icon ion-information-circled"></i>  Deseja iniciar essa instalação?</p>
+				</div>
+				<label class="item">
+					<button class="button button-block button-assertive" type="submit">Ok</button>
+				</label>
+			</div>
+	</ion-content>
+</ion-modal-view>
