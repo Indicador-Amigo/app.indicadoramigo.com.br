@@ -1,22 +1,17 @@
-// -------------------------------------------------------------------
-// URL do serviço - Alterar para produção
-// -------------------------------------------------------------------
-//var urlApi = "http://sistema.indicadoramigo.com.br/api/v1";
-var urlApi = "http://192.168.1.100/indicadoramigo/api/v1";
-
 angular.module('starter.controllers', ['ionic', 'starter.services'])
 
 .config(function($httpProvider) {
 	$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, $state, $http, usuario, db) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, $state, $http, usuario, db, transmissao) {
 	// Executar ao exibir a view
 	$scope.$on("$ionicView.beforeEnter", function(event, data) {
 		// Login
 		if (data.stateName != "app.login" && data.stateName != "app.cadastro") {
 			usuario.login().then(function() {
 				console.warn("Usuário: " + $scope.usuario.nome);
+				transmissao.iniciar();
 				// Contadores da home
 				if (data.stateName == "app.home") {
 					$scope.dados = {
@@ -26,7 +21,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 					db.contarIndicacoesPorStatus(0).then(function(total) {
 						$scope.dados.totalPendentes = total;
 					});
-					$http.post(urlApi + "/resumo.php", $.param({id_usuario: $scope.usuario.id_usuario})).then(function(response) {
+					$http.post(URL_API + "/resumo.php", $.param({id_usuario: $scope.usuario.id_usuario})).then(function(response) {
 						$scope.dados.totalRecentes = response.data.recentes;
 					});
 				}
@@ -43,7 +38,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 	};
 })
 
-.controller('LoginCtrl', function($scope, $ionicPopup, $ionicLoading, $http, $state, db) {
+.controller('LoginCtrl', function($scope, $ionicPopup, $ionicLoading, $http, $state, db, transmissao) {
 	$scope.form = {
 		email: "",
 		senha: ""
@@ -54,7 +49,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 		$ionicLoading.show({
 			template: '<p>Autenticando...</p><ion-spinner></ion-spinner>'
         });
-		var sUrl = urlApi + "/login.php";
+		var sUrl = URL_API + "/login.php";
 		var dados = $.param($scope.form);
 		$http({
 			method: 'POST',
@@ -65,6 +60,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 			$ionicLoading.hide();
 			if (response.data.status) {
 				db.gravarUsuario(response.data).then(function() {
+					transmissao.iniciar();
 					$state.go("app.home", {}, {location:true, reload: true});
 				}, function() {
 					$ionicPopup.alert({
@@ -82,7 +78,8 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 					okType : 'button-positive'
 				});
 			}
-		}, function(error) {
+		}, function(msg) {
+			error("login", msg);
 			$ionicLoading.hide();
 			$ionicPopup.alert({
 				title : 'Erro',
@@ -124,7 +121,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 		$ionicLoading.show({
 			template: '<p>Processando...</p><ion-spinner></ion-spinner>'
         });
-		var sUrl = urlApi + "/cadastro.php";
+		var sUrl = URL_API + "/cadastro.php";
 		var dados = $.param($scope.form);
 		$http.post(sUrl, dados).then(function(response) {
 			$ionicLoading.hide();
@@ -247,10 +244,10 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 			db.salvarIndicacao($scope.form).then(function(id) {
 				console.warn("Id: # " + id);
 				// Transmitir para o servidor
-				$ionicLoading.show({
+				/*$ionicLoading.show({
 					template: '<p>Transmitindo...</p><ion-spinner></ion-spinner>'
 		        });
-				var sUrl = urlApi + "/captacao.php";
+				var sUrl = URL_API + "/captacao.php";
 				var dados = $.param($scope.form);
 				$http.post(sUrl, dados).then(function(response) {
 					$ionicLoading.hide();
@@ -268,8 +265,9 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 							okType : 'button-positive'
 						});
 					}
-				}, function(error) {
+				}, function(msg) {
 					// Erro ao transmitir
+					error("captacao", msg);
 					$ionicLoading.hide();
 					$ionicPopup.alert({
 						title : 'Erro',
@@ -277,7 +275,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 						okText : 'Ok',
 						okType : 'button-positive'
 					});
-				});
+				});*/
 				// Limpar form
 				$scope.form.nome = "";
 				$scope.form.telefone = "";

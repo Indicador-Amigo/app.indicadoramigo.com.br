@@ -129,8 +129,7 @@ angular.module("db", [ "ngCordova" ])
 		listarIndicacoesPorStatus: function(transmitida) {
 			var d = $q.defer();
 			var db = $cordovaSQLite.openDB(config());
-			var sql = "select id_indicacao, nome, telefone, email, periodo_contato"
-				+ " from indicacao where transmitida = " + (transmitida ? 1 : 0)
+			var sql = "select * from indicacao where transmitida = " + (transmitida ? 1 : 0)
 				+ " order by id_indicacao desc limit 10";
 			$cordovaSQLite.execute(db, sql).then(function(result) {
 				var arr = [];
