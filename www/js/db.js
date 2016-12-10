@@ -196,7 +196,7 @@ angular.module("db", [ "ngCordova" ])
 				var sql = "update indicacao set transmitida = ? where id_indicacao = ?";
 				var args = [1, id];
 				$cordovaSQLite.execute(db, sql, args).then(function(result) {
-					d.resolve(result.insertId);
+					d.resolve();
 				}, function(msg) {
 					error("marcarIndicacaoTransmitida", msg);
 					d.reject();

@@ -19,8 +19,16 @@ angular.module('starter.services', [ 'ionic' ])
 })
 
 .service('transmissao', function($http, $interval, db) {
+	var contador = 0;
+	var timer = null;
+	
 	function transmitir() {
+		if (contador > 0) {
+			console.warn("Transmissão pendente: " + contador);
+			return;
+		}
 		db.listarIndicacoesPorStatus(false).then(function(result) {
+			contador = result.length;
 			for (var i = 0; i < result.length; i++) {
 				var id = result[i].id_indicacao;
 				console.warn("Transmitir # " + id);
@@ -40,21 +48,32 @@ angular.module('starter.services', [ 'ionic' ])
 					if (response.data.status) {
 						// Transmitida!
 						// Marcar como transmitida no banco local
-						db.marcarIndicacaoTransmitida(id);
+						db.marcarIndicacaoTransmitida(id).then(function() {
+							contador--;
+						}, function() {
+							contador--;
+						});
 					} else {
+						contador--;
 						error("transmissao", response.data.erros);
 					}
 				}, function(msg) {
 					// Erro ao transmitir
+					contador--;
 					error("transmissao", msg);
 				});
 			}
 		});
 	}
+	
 	return {
 		iniciar: function() {
+			if (timer) {
+				console.warn("Cancelando timer de transmissão");
+				$interval.cancel(timer);
+			}
 			console.warn("Iniciando serviço de transmissão");
-			$interval(transmitir, 5000);
+			timer = $interval(transmitir, 5000);
 		}
 	};
 });

@@ -243,39 +243,6 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 			// Salvar no banco local
 			db.salvarIndicacao($scope.form).then(function(id) {
 				console.warn("Id: # " + id);
-				// Transmitir para o servidor
-				/*$ionicLoading.show({
-					template: '<p>Transmitindo...</p><ion-spinner></ion-spinner>'
-		        });
-				var sUrl = URL_API + "/captacao.php";
-				var dados = $.param($scope.form);
-				$http.post(sUrl, dados).then(function(response) {
-					$ionicLoading.hide();
-					if (response.data.status) {
-						// Transmitida!
-						// Marcar como transmitida no banco local
-						db.marcarIndicacaoTransmitida(id);
-					} else {
-						// Rejeitada pelo servidor
-						// Exibir erro
-						$ionicPopup.alert({
-							title : 'Erro',
-							template : response.data.erros[0],
-							okText : 'Ok',
-							okType : 'button-positive'
-						});
-					}
-				}, function(msg) {
-					// Erro ao transmitir
-					error("captacao", msg);
-					$ionicLoading.hide();
-					$ionicPopup.alert({
-						title : 'Erro',
-						template : 'Não foi possível transmitir os dados.',
-						okText : 'Ok',
-						okType : 'button-positive'
-					});
-				});*/
 				// Limpar form
 				$scope.form.nome = "";
 				$scope.form.telefone = "";
