@@ -2,15 +2,25 @@
 	<ion-content>
 		<form ng-submit="cadastrar()">
 			<div class="list">
+				<label class="item item-input item-stacked-label item-select">
+					<span class="input-label">Perfil</span>
+					<select ng-model="form.perfil">
+						<option value="C">Captador</option>
+						<option value="R">Revenda</option>
+					</select>
+				</label>
 				<label class="item item-input item-stacked-label">
-					<span class="input-label">Nome Completo</span>
+					<span class="input-label" ng-show="form.perfil == 'C'">Nome Completo</span>
+					<span class="input-label" ng-show="form.perfil == 'R'">Contato / Responsável</span>
 					<input type="text" ng-model="form.nome" placeholder="Informe o nome" maxlength="60">
 				</label>
 				<label class="item item-input item-stacked-label">
-					<span class="input-label">CPF</span>
-					<input type="number" ng-model="form.cpf" placeholder="Informe o CPF" maxlength="11">
+					<span class="input-label" ng-show="form.perfil == 'C'">CPF</span>
+					<span class="input-label" ng-show="form.perfil == 'R'">CNPJ</span>
+					<input type="number" ng-model="form.cpfCnpj" ng-show="form.perfil == 'C'" placeholder="Informe o CPF" maxlength="11">
+					<input type="number" ng-model="form.cpfCnpj" ng-show="form.perfil == 'R'" placeholder="Informe o CNPJ" maxlength="14">
 				</label>
-				<label class="item item-input item-stacked-label">
+				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
 					<span class="input-label">RG</span>
 					<input type="text" ng-model="form.rg" placeholder="Informe o RG" maxlength="20">
 				</label>
@@ -19,10 +29,11 @@
 					<input type="email" ng-model="form.email" placeholder="Informe o email" maxlength="60">
 				</label>
 				<label class="item item-input item-stacked-label">
-					<span class="input-label">Celular</span>
-					<input type="tel" ng-model="form.celular" placeholder="Informe o celular" maxlength="15">
+					<span class="input-label" ng-show="form.perfil == 'C'">Celular</span>
+					<span class="input-label" ng-show="form.perfil == 'R'">Telefone</span>
+					<input type="tel" ng-model="form.telefone" placeholder="Informe o número" maxlength="15">
 				</label>
-				<label class="item item-input item-stacked-label">
+				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
 					<span class="input-label">Data de Nascimento</span>
 					<input type="date" ng-model="form.dataNascimento" placeholder="Informe o data de nascimento" maxlength="10">
 				</label>
