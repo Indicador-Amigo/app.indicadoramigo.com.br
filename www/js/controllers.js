@@ -202,7 +202,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 			ionicAlert($ionicPopup, "Erro", "O campo Período de Contato é obrigatório.");
 			return;
 		}
-		if ($scope.form.renda.length == 0) {
+		/*if ($scope.form.renda.length == 0) {
 			ionicAlert($ionicPopup, "Erro", "O campo Renda é obrigatório.");
 			return;
 		} else if (!$scope.form.renda.match(/^[0-9]+$/)) {
@@ -228,6 +228,13 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 			return;
 		} else if (!$scope.form.valorParcela.match(/^[0-9]+$/)) {
 			ionicAlert($ionicPopup, "Erro", "O valor da parcela é inválido. Insira somente dígitos.");
+			return;
+		}*/
+		if (!$scope.form.renda
+				&& !$scope.form.valorCredito
+				&& !$scope.form.prazoConsorcio
+				&& !$scope.form.valorParcela) {
+			ionicAlert($ionicPopup, "Erro", "Informe pelo menos uma opção da parte financeira.");
 			return;
 		}
 		$ionicPopup.confirm({
