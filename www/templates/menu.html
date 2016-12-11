@@ -13,42 +13,20 @@
 	</ion-side-menu-content>
 
 	<ion-side-menu side="left">
-		<div class="bar bar-header bar-positive">
+		<ion-header-bar class="bar-positive">
 			<h1 class="title">Menu</h1>
-		</div>
-		<div class="list bar-subheader">
-			<div class="item item-avatar" href="">
-<!-- 				<img src="img/perfil.png"> -->
-				<h2>{{usuario.nome}}</h2>
-				<p>
-					Indicador
-					<i class="icon ion-star positive"></i>
-					<i class="icon ion-star positive"></i>
-					<i class="icon ion-star positive"></i>
-					<i class="icon ion-star positive"></i>
-					<i class="icon ion-star positive"></i>
-				</p> 
-			</div>
-		</div>
-		<ion-content class="has-subheader">
-			<br><p></p>
+		</ion-header-bar>
+		<ion-content>
 			<ion-list>
-				<!-- <ion-item menu-close ng-click="login()" class="item-icon-left">
-					<i class="icon material-icons">&#xE851;</i>
-					Login
-				</ion-item> -->
-				<div class="item">
-					Código
+				<div class="item item-text-wrap">
+					<h2 ng-if="usuario.perfil == 'C'">Indicador</h2>
 					<span class="badge badge-positive">{{usuario.id_usuario}}</span>
+					<h2 style="margin-top: 10px;">{{usuario.nome}}</h2>
 				</div>
 				<ion-item menu-close href="#/app/home" class="item-icon-left">
 					<i class="icon material-icons">&#xE88A;</i>
 					Início
 				</ion-item>
-				<!-- <ion-item menu-close href="#/app/cadastro" class="item-icon-left">
-					<i class="icon material-icons">&#xE85E;</i>
-					Cadastro
-				</ion-item> -->
 				<ion-item menu-close href="#/app/captacaoList" class="item-icon-left">
 					<i class="icon material-icons">&#xE85D;</i>
 					Indicação
@@ -57,22 +35,10 @@
 					<i class="icon material-icons">&#xE8EF;</i>
 					Extrato
 				</ion-item>
-				<!-- <ion-item menu-close href="#/app/instalacoes" class="item-icon-left">
-					<i class="icon material-icons">&#xE869;</i>
-					Instalação
-				</ion-item> -->
-				<!-- <ion-item menu-close href="#/app/painel" class="item-icon-left">
-					<i class="icon material-icons">&#xE871;</i>
-					Painel
-				</ion-item> -->
 				<ion-item menu-close href="#/app/perfil" class="item-icon-left">
 					<i class="icon material-icons">&#xE851;</i>
 					Perfil
 				</ion-item>
-				<!-- <ion-item menu-close href="#/app/playlists" class="item-icon-left">
-					<i class="icon material-icons">&#xE8B8;</i>
-					Configuração
-				</ion-item> -->
 				<ion-item menu-close href="#/app/sobre" class="item-icon-left">
 					<i class="icon material-icons">&#xE88E;</i>
 					Sobre

@@ -2,6 +2,9 @@
 	<ion-content>
 		<form ng-submit="salvar()">
 			<div class="list">
+				<div class="item item-divider item-text-wrap">
+					Dados Pessoais
+				</div>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Nome Completo</span>
 					<input type="text" ng-model="form.nome" placeholder="Informe o nome" maxlength="100">
@@ -22,33 +25,25 @@
 						<option value="N">Noite</option>
 					</select>
 				</label>
+				<div class="item item-divider item-text-wrap">
+					Dados Financeiros
+				</div>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Renda</span>
-					<input type="text" ng-model="form.renda" placeholder="Informe a renda" maxlength="10">
+					<input type="number" ng-model="form.renda" placeholder="Informe a renda" maxlength="10">
 				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Valor da Carta de Crédito</span>
-					<input type="text" ng-model="form.valorCredito" placeholder="Informe o valor da carta" maxlength="10">
+					<input type="number" ng-model="form.valorCredito" placeholder="Informe o valor da carta" maxlength="10">
 				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Prazo do Consórcio</span>
-					<input type="text" ng-model="form.prazoConsorcio" placeholder="Informe o número de meses" maxlength="10">
+					<input type="number" ng-model="form.prazoConsorcio" placeholder="Informe o número de meses" maxlength="10">
 				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Valor da Parcela</span>
-					<input type="text" ng-model="form.valorParcela" placeholder="Informe o valor da parcela" maxlength="10">
+					<input type="number" ng-model="form.valorParcela" placeholder="Informe o valor da parcela" maxlength="10">
 				</label>
-				<!-- <ul>
-					<li class="item item-toggle item-text-wrap">
-						Confirma Contato?
-						<label class="toggle toggle-positive">
-							<input type="checkbox" ng-model="form.confirmaVenda">
-							<div class="track">
-								<div class="handle"></div>
-							</div>
-						</label>
-					</li>
-				</ul> -->
 				<div class="item item-divider item-text-wrap">
 					<p><i class="icon ion-information-circled"></i>  Se um indicado for efetuado, ou seja, ter a venda confirmada, o indicador receberá uma comissão que poderá ser visualizada no <b>Extrato</b>.</p>
 				</div>

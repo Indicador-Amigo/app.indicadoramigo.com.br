@@ -1,7 +1,7 @@
 {
-  "name": "AppIndicador",
-  "version": "1.1.1",
-  "description": "AppIndicador",
+  "name": "Indicador Amigo",
+  "version": "1.0.5",
+  "description": "Indicador Amigo",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",
