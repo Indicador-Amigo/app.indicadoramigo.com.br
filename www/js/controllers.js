@@ -154,6 +154,89 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 	};
 })
 
+.controller('PerfilCtrl', function($scope, $ionicPopup, $ionicLoading, $ionicHistory, $http, $state, db) {
+	$scope.form = {
+		idUsuario: 0,
+		nome: "",
+		email: "",
+		perfil: "C", // Fixo - Captador
+		cpfCnpj: "",
+		rg: "",
+		telefone: "",
+		dataNascimento: null,
+		endereco: "",
+		numero: "",
+		complemento: "",
+		bairro: "",
+		cidade: "",
+		uf: "",
+		cep: ""
+	};
+	$scope.$on("$ionicView.beforeEnter", function(event, data) {
+		if (data.stateName == "app.perfil") {
+			db.recuperarUsuario(1).then(function(dados) {
+				$scope.form = {
+					idUsuario: dados.id_usuario,
+					nome: dados.nome,
+					email: dados.email,
+					perfil: dados.perfil,
+					cpfCnpj: dados.cpf,
+					rg: dados.rg,
+					telefone: dados.celular,
+					dataNascimento: new Date(dados.data_nascimento),
+					endereco: dados.endereco,
+					numero: dados.numero,
+					complemento: dados.complemento,
+					bairro: dados.bairro,
+					cidade: dados.cidade,
+					uf: dados.uf,
+					cep: dados.cep
+				};
+			});
+		}
+	});
+	
+	$scope.alterar = function() {
+		$ionicLoading.show({
+			template: '<p>Processando...</p><ion-spinner></ion-spinner>'
+        });
+		var sUrl = URL_API + "/alterarCadastro.php";
+		var dados = $.param($scope.form);
+		$http.post(sUrl, dados).then(function(response) {
+			$ionicLoading.hide();
+			if (response.data.status) {
+				db.atualizarUsuario($scope.form);
+				$ionicPopup.alert({
+					title : 'Sucesso',
+					template : 'Seu cadastro foi atualizado.',
+					okText : 'Ok',
+					okType : 'button-positive'
+				}).then(function() {
+					$ionicHistory.nextViewOptions({
+						disableBack: true
+					});
+					$state.go("app.home", {}, {location:true, reload: true});
+				});
+			} else {
+				$ionicPopup.alert({
+					title : 'Erro',
+					template : response.data.erros[0],
+					okText : 'Ok',
+					okType : 'button-positive'
+				});
+			}
+		}, function(error) {
+			$ionicLoading.hide();
+			$ionicPopup.alert({
+				title : 'Erro',
+				template : 'Ocorreu um erro inesperado.',
+				okText : 'Ok',
+				okType : 'button-positive'
+			});
+		});
+	};
+})
+
 .controller('CaptacaoListCtrl', function($scope, $ionicPopup, $ionicLoading, $http, $state, db) {
 	$scope.dados = {
 		listaEnviadas: []

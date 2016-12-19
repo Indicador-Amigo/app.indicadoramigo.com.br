@@ -1,56 +1,102 @@
-<ion-view view-title="Perfil">
+<ion-view ng-controller="PerfilCtrl" view-title="Perfil">
 	<ion-content>
-		<div class="list">
-			<div class="item item-text-wrap">
-				Código
-				<span class="badge badge-positive">007475</span>
+		<form ng-submit="alterar()">
+			<div class="list">
+				<div class="item item-text-wrap">
+					Código
+					<span class="badge badge-positive">{{form.idUsuario}}</span>
+				</div>
+				<div class="item item-divider">
+					Dados Pessoais
+				</div>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label" ng-show="form.perfil == 'C'">Nome Completo</span>
+					<span class="input-label" ng-show="form.perfil == 'R'">Contato / Responsável</span>
+					<input type="text" placeholder="" ng-model="form.nome">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label" ng-show="form.perfil == 'C'">CPF</span>
+					<span class="input-label" ng-show="form.perfil == 'R'">CNPJ</span>
+					<input type="text" ng-model="form.cpfCnpj" ng-show="form.perfil == 'C'" placeholder="Informe o CPF" maxlength="11">
+					<input type="text" ng-model="form.cpfCnpj" ng-show="form.perfil == 'R'" placeholder="Informe o CNPJ" maxlength="14">
+				</label>
+				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
+					<span class="input-label">RG</span>
+					<input type="text" ng-model="form.rg" placeholder="Informe o RG" maxlength="20">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label" ng-show="form.perfil == 'C'">Celular</span>
+					<span class="input-label" ng-show="form.perfil == 'R'">Telefone</span>
+					<input type="tel" ng-model="form.telefone" placeholder="Informe o número" maxlength="15">
+				</label>
+				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
+					<span class="input-label">Data de Nascimento</span>
+					<input type="date" ng-model="form.dataNascimento" placeholder="Informe o data de nascimento" maxlength="10">
+				</label>
+				
+				<div class="item item-divider">
+					Endereço
+				</div>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Logradouro</span>
+					<input type="text" placeholder="" ng-model="form.endereco">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Número</span>
+					<input type="text" placeholder="" ng-model="form.numero">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Complemento</span>
+					<input type="text" placeholder="" ng-model="form.complemento">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Bairro</span>
+					<input type="text" placeholder="" ng-model="form.bairro">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Cidade</span>
+					<input type="text" placeholder="" ng-model="form.cidade">
+				</label>
+				<label class="item item-input item-select">
+					<span class="input-label">UF</span>
+					<select ng-model="form.uf">
+						<option>AC</option>
+						<option>AL</option>
+						<option>AM</option>
+						<option>AP</option>
+						<option>BA</option>
+						<option>CE</option>
+						<option>DF</option>
+						<option>ES</option>
+						<option>GO</option>
+						<option>MA</option>
+						<option>MG</option>
+						<option>MS</option>
+						<option>MT</option>
+						<option>PA</option>
+						<option>PB</option>
+						<option>PE</option>
+						<option>PI</option>
+						<option>PR</option>
+						<option>RJ</option>
+						<option>RN</option>
+						<option>RO</option>
+						<option>RR</option>
+						<option>RS</option>
+						<option>SC</option>
+						<option>SE</option>
+						<option>SP</option>
+						<option>TO</option>
+					</select>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">CEP</span>
+					<input type="text" placeholder="" ng-model="form.cep">
+				</label>
+				<div class="item">
+					<button class="button button-block button-positive" type="submit">Alterar</button>
+				</div>
 			</div>
-			<div class="item item-divider">
-				Dados Pessoais
-			</div>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Nome Completo</span>
-				<input type="text" placeholder="" value="Tulho Melo" readonly="true">
-			</label>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">CPF</span>
-				<input type="text" placeholder="" value="032.125.134-99" readonly="true">
-			</label>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Nascimento</span>
-				<input type="text" placeholder="" value="25/10/1980" readonly="true">
-			</label>
-			<div class="item item-divider">
-				Endereço
-			</div>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Logradouro</span>
-				<input type="text" placeholder="" value="R. Costa e Silva" readonly="true">
-			</label>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Número</span>
-				<input type="text" placeholder="" value="432" readonly="true">
-			</label>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Complemento</span>
-				<input type="text" placeholder="" value="Ap 1303" readonly="true">
-			</label>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Bairro</span>
-				<input type="text" placeholder="" value="São Bento" readonly="true">
-			</label>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Cidade</span>
-				<input type="text" placeholder="" value="Belo Horizonte" readonly="true">
-			</label>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">UF</span>
-				<input type="text" placeholder="" value="MG" readonly="true">
-			</label>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">CEP</span>
-				<input type="text" placeholder="" value="31110-040" readonly="true">
-			</label>
-		</div>
+		</form>
 	</ion-content>
 </ion-view>

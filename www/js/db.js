@@ -27,6 +27,9 @@ var sqlInsertUsuario = "insert into usuario(id_usuario, nome, email, perfil, cpf
 		+ " celular, data_nascimento, endereco, numero, complemento, bairro,"
 		+ " cidade, uf, cep, banco, agencia, tipo_conta, conta)"
 		+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+var sqlUpdateUsuario = "update usuario set nome=?, email=?, cpf=?, rg=?,"
+	+ " celular=?, data_nascimento=?, endereco=?, numero=?, complemento=?, bairro=?,"
+	+ " cidade=?, uf=?, cep=? where id_usuario=?";
 
 angular.module("db", [ "ngCordova" ])
 .run(function($ionicPlatform, $cordovaSQLite) {
@@ -62,6 +65,7 @@ angular.module("db", [ "ngCordova" ])
 		apagarBanco : function() {
 			$cordovaSQLite.deleteDB(config());
 		},
+		
 		// Recupera o usuário autenticado no sistema
 		recuperarUsuario : function() {
 			var d = $q.defer();
@@ -82,6 +86,7 @@ angular.module("db", [ "ngCordova" ])
 			});
 			return d.promise;
 		},
+		
 		// Grava o usuário autenticado no sistema
 		gravarUsuario : function(dados) {
 			var d = $q.defer();
@@ -92,10 +97,9 @@ angular.module("db", [ "ngCordova" ])
 				var args = [dados.id_usuario,
 				            dados.nome,
 				            dados.email,
-				            dados.perfil,
-				            dados.cpf,
+				            dados.cpf_cnpj,
 				            dados.rg,
-				            dados.celular,
+				            dados.telefone,
 				            dados.data_nascimento,
 				            dados.endereco,
 				            dados.numero,
@@ -118,6 +122,38 @@ angular.module("db", [ "ngCordova" ])
 			});
 			return d.promise;
 		},
+		
+		// Atualiza o usuário autenticado no sistema
+		atualizarUsuario : function(dados) {
+			var d = $q.defer();
+			$ionicPlatform.ready(function() {
+				console.warn("atualizarUsuario");
+				var db = $cordovaSQLite.openDB(config());
+				var args = [dados.nome,
+				            dados.email,
+				            dados.cpfCnpj,
+				            dados.rg,
+				            dados.telefone,
+				            dados.dataNascimento,
+				            dados.endereco,
+				            dados.numero,
+				            dados.complemento,
+				            dados.bairro,
+				            dados.cidade,
+				            dados.uf,
+				            dados.cep,
+				            dados.idUsuario
+				];
+				$cordovaSQLite.execute(db, sqlUpdateUsuario, args).then(function() {
+					d.resolve();
+				}, function(msg) {
+					error("atualizarUsuario", msg);
+					d.reject();
+				});
+			});
+			return d.promise;
+		},
+		
 		// Conta o número de indicações por status (transmitida/não transmitida)
 		contarIndicacoesPorStatus: function(transmitida) {
 			var d = $q.defer();
@@ -135,6 +171,7 @@ angular.module("db", [ "ngCordova" ])
 			});
 			return d.promise;
 		},
+		
 		// Lista as indicações por status (transmitida/não transmitida)
 		listarIndicacoesPorStatus: function(transmitida) {
 			var d = $q.defer();
@@ -156,6 +193,7 @@ angular.module("db", [ "ngCordova" ])
 			});
 			return d.promise;
 		},
+		
 		// Salva uma indicação
 		salvarIndicacao: function(dados) {
 			var d = $q.defer();
@@ -187,6 +225,7 @@ angular.module("db", [ "ngCordova" ])
 			});
 			return d.promise;
 		},
+		
 		// Marca uma indicação como transmitida
 		marcarIndicacaoTransmitida: function(id) {
 			var d = $q.defer();
