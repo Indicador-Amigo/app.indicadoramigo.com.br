@@ -16,13 +16,17 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 				if (data.stateName == "app.home") {
 					$scope.dados = {
 							totalPendentes: 0,
-							totalRecentes: 0
+							totalRecentes: 0,
+							indConfirmadas: 0,
+							valConfirmadas: 0
 					};
 					db.contarIndicacoesPorStatus(0).then(function(total) {
 						$scope.dados.totalPendentes = total;
 					});
 					$http.post(URL_API + "/resumo.php", $.param({id_usuario: $scope.usuario.id_usuario})).then(function(response) {
 						$scope.dados.totalRecentes = response.data.recentes;
+						$scope.dados.indConfirmadas = response.data.indConfirmadas;
+						$scope.dados.valConfirmadas = response.data.valConfirmadas;
 					});
 				}
 			}, function() {
@@ -285,34 +289,6 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 			ionicAlert($ionicPopup, "Erro", "O campo Período de Contato é obrigatório.");
 			return;
 		}
-		/*if ($scope.form.renda.length == 0) {
-			ionicAlert($ionicPopup, "Erro", "O campo Renda é obrigatório.");
-			return;
-		} else if (!$scope.form.renda.match(/^[0-9]+$/)) {
-			ionicAlert($ionicPopup, "Erro", "O valor da renda é inválido. Insira somente dígitos.");
-			return;
-		}
-		if ($scope.form.valorCredito.length == 0) {
-			ionicAlert($ionicPopup, "Erro", "O campo Valor do Crédito é obrigatório.");
-			return;
-		} else if (!$scope.form.valorCredito.match(/^[0-9]+$/)) {
-			ionicAlert($ionicPopup, "Erro", "O valor do crédito é inválido. Insira somente dígitos.");
-			return;
-		}
-		if ($scope.form.prazoConsorcio.length == 0) {
-			ionicAlert($ionicPopup, "Erro", "O campo Prazo do Consórcio é obrigatório.");
-			return;
-		} else if (!$scope.form.prazoConsorcio.match(/^[0-9]+$/)) {
-			ionicAlert($ionicPopup, "Erro", "O prazo do consórcio é inválido. Insira somente dígitos.");
-			return;
-		}
-		if ($scope.form.valorParcela.length == 0) {
-			ionicAlert($ionicPopup, "Erro", "O campo Valor da Parcela é obrigatório.");
-			return;
-		} else if (!$scope.form.valorParcela.match(/^[0-9]+$/)) {
-			ionicAlert($ionicPopup, "Erro", "O valor da parcela é inválido. Insira somente dígitos.");
-			return;
-		}*/
 		if (!$scope.form.renda
 				&& !$scope.form.valorCredito
 				&& !$scope.form.prazoConsorcio
@@ -349,4 +325,23 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 			});
 		});
 	};
+})
+
+.controller('ExtratoCtrl', function($scope, $ionicPopup, $ionicLoading, $http) {
+	$scope.listaPagas = [];
+	$scope.listaDisponiveis = [];
+	
+	$scope.$on("$ionicView.beforeEnter", function(event, data) {
+		if (data.stateName == "app.extrato") {
+			$ionicLoading.show({
+				template: '<p>Carregando...</p><ion-spinner></ion-spinner>'
+	        });
+			$http.post(URL_API + "/extrato.php", $.param({id_usuario: $scope.usuario.id_usuario})).then(function(response) {
+				$scope.listaPagas = response.data.pagas;
+				$scope.listaDisponiveis = response.data.disponiveis;
+			}).finally(function() {
+				$ionicLoading.hide();
+			});
+		}
+	});
 })

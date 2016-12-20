@@ -1,4 +1,4 @@
-<ion-view view-title="Extrato">
+<ion-view ng-controller="ExtratoCtrl" view-title="Extrato">
 	<ion-content>
 		<div class="card list">
 			<div class="item item-divider item-positive">
@@ -7,53 +7,34 @@
 			<div class="item item-divider item-text-wrap">
 				<p>Aqui constará o valor da comissão total calculada a partir da quantidade de indicações efetuadas no período indicado abaixo.</p>
 			</div>
-			<div class="item item-text-wrap">
-				<p>Período</p>
-				<span class="badge badge-light">01/11/2016 a 15/11/2016</span>
+			<div class="item item-text-wrap" ng-show="listaDisponiveis.length == 0">
+				<p>Você não possui comissão a receber.</p>
 			</div>
-			<div class="item item-text-wrap">
-				<p>Indicações Efetuadas</p>
-				<span class="badge badge-light">6</span>
-			</div>
-			<div class="item item-text-wrap">
-				<p>Fechamento em</p>
-				<span class="badge badge-light">16/11/2016</span>
-			</div>
-			<div class="item item-text-wrap">
-				<p>Valor a Receber</p>
-				<span class="badge badge-positive">R$ 300,00</span>
+			<div class="item item-text-wrap" ng-repeat="obj in listaDisponiveis">
+				<p>Data <span class="item-note" style="color: #444;">{{obj.data_competencia}}</span>
+				<br>
+				Indicações Efetuadas <span class="item-note" style="color: #444;">{{obj.indicacoes}}</span>
+				<br>
+				Fechamento em <span class="item-note" style="color: #444;">{{obj.data_situacao}}</span>
+    			<br>
+				<b>Valor a Receber</b> <span class="item-note" style="color: #444;"><b>R$ {{obj.valor}}</b></span></p>
 			</div>
 		</div>
 		<div class="card list">
 			<div class="item item-divider item-positive">
 				Comissão Recebida
 			</div>
-			<div class="item item-text-wrap">
-				<p>Período <span class="item-note" style="color: #444;">16/10/2016 a 31/10/2016</span>
-				<br>
-				Indicações Efetuadas <span class="item-note" style="color: #444;">3</span>
-				<br>
-				Pago em <span class="item-note" style="color: #444;">01/11/2016</span>
-    			<br>
-				<b>Valor Recebido</b> <span class="item-note" style="color: #444;"><b>R$ 150,00</b></span></p>
+			<div class="item item-text-wrap" ng-show="listaPagas.length == 0">
+				<p>Você não recebeu pagamento de comissão recentemente.</p>
 			</div>
-			<div class="item item-text-wrap">
-				<p>Período <span class="item-note" style="color: #444;">01/10/2016 a 15/10/2016</span>
+			<div class="item item-text-wrap" ng-repeat="obj in listaPagas">
+				<p>Data <span class="item-note" style="color: #444;">{{obj.data_competencia}}</span>
 				<br>
-				Indicações Efetuadas <span class="item-note" style="color: #444;">4</span>
+				Indicações Efetuadas <span class="item-note" style="color: #444;">{{obj.indicacoes}}</span>
 				<br>
-				Pago em <span class="item-note" style="color: #444;">17/10/2016</span>
+				Pago em <span class="item-note" style="color: #444;">{{obj.data_situacao}}</span>
     			<br>
-				<b>Valor Recebido</b> <span class="item-note" style="color: #444;"><b>R$ 200,00</b></span></p>
-			</div>
-			<div class="item item-text-wrap">
-				<p>Período <span class="item-note" style="color: #444;">16/09/2016 a 30/09/2016</span>
-				<br>
-				Indicações Efetuadas <span class="item-note" style="color: #444;">10</span>
-				<br>
-				Pago em <span class="item-note" style="color: #444;">03/10/2016</span>
-    			<br>
-				<b>Valor Recebido</b> <span class="item-note" style="color: #444;"><b>R$ 500,00</b></span></p>
+				<b>Valor Recebido</b> <span class="item-note" style="color: #444;"><b>R$ {{obj.valor}}</b></span></p>
 			</div>
 		</div>
 	</ion-content>
