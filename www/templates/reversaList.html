@@ -1,0 +1,19 @@
+<ion-view ng-controller="ReversaListCtrl" view-title="Indicação Reversa">
+	<ion-content>
+		<div class="card list">
+			<div class="item item-divider item-positive">
+				Cartas de Crédito Aprovadas
+			</div>
+			<div class="item item-text-wrap" ng-show="lista.length == 0">
+				<p>Você não recebeu nenhuma indicação de Carta de Crédito aprovada.</p>
+			</div>
+			<a class="item item-text-wrap" ng-repeat="obj in lista" href="#/app/reversaEdit/{{obj.id_reversa}}">
+				<p>Código <span class="item-note" style="color: #444;">{{obj.id_reversa}}</span>
+				<br>
+				Nome <span class="item-note" style="color: #444;">{{obj.nome}}</span>
+				<br>
+				<b>Valor do Crédito</b> <span class="item-note" style="color: #444;"><b>R$ {{obj.valor_credito}}</b></span></p>
+			</a>
+		</div>
+	</ion-content>
+</ion-view>

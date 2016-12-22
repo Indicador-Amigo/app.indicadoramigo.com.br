@@ -124,6 +124,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 		}
 	})
 
+	.state('app.reversaList', {
+		url: '/reversaList',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/reversaList.html'
+			}
+		}
+	})
+
+	.state('app.reversaEdit', {
+		url: '/reversaEdit/:idReversa',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/reversaEdit.html'
+			}
+		}
+	})
+
 	.state('app.painel', {
 		url: '/painel',
 		views: {

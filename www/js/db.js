@@ -71,7 +71,6 @@ angular.module("db", [ "ngCordova" ])
 			var d = $q.defer();
 			var query = "select * from usuario";
 			$ionicPlatform.ready(function() {
-				console.warn("recuperarUsuario");
 				var db = $cordovaSQLite.openDB(config());
 				$cordovaSQLite.execute(db, query).then(function(result) {
 					if (result.rows.length > 0) {
@@ -91,12 +90,12 @@ angular.module("db", [ "ngCordova" ])
 		gravarUsuario : function(dados) {
 			var d = $q.defer();
 			$ionicPlatform.ready(function() {
-				console.warn("gravarUsuario");
 				var db = $cordovaSQLite.openDB(config());
 				$cordovaSQLite.execute(db, "delete from usuario");
 				var args = [dados.id_usuario,
 				            dados.nome,
 				            dados.email,
+				            dados.perfil,
 				            dados.cpf_cnpj,
 				            dados.rg,
 				            dados.telefone,
@@ -127,7 +126,6 @@ angular.module("db", [ "ngCordova" ])
 		atualizarUsuario : function(dados) {
 			var d = $q.defer();
 			$ionicPlatform.ready(function() {
-				console.warn("atualizarUsuario");
 				var db = $cordovaSQLite.openDB(config());
 				var args = [dados.nome,
 				            dados.email,
@@ -158,7 +156,6 @@ angular.module("db", [ "ngCordova" ])
 		contarIndicacoesPorStatus: function(transmitida) {
 			var d = $q.defer();
 			$ionicPlatform.ready(function() {
-				console.warn("contarIndicacoesPorStatus");
 				var db = $cordovaSQLite.openDB(config());
 				var sql = "select count(*) as total from indicacao where transmitida = "
 					+ (transmitida ? 1 : 0);
@@ -176,7 +173,6 @@ angular.module("db", [ "ngCordova" ])
 		listarIndicacoesPorStatus: function(transmitida) {
 			var d = $q.defer();
 			$ionicPlatform.ready(function() {
-				console.warn("listarIndicacoesPorStatus");
 				var db = $cordovaSQLite.openDB(config());
 				var sql = "select * from indicacao where transmitida = " + (transmitida ? 1 : 0)
 					+ " order by id_indicacao desc limit 10";
@@ -198,7 +194,6 @@ angular.module("db", [ "ngCordova" ])
 		salvarIndicacao: function(dados) {
 			var d = $q.defer();
 			$ionicPlatform.ready(function() {
-				console.warn("salvarIndicacao");
 				var db = $cordovaSQLite.openDB(config());
 				var sql = "insert into indicacao(id_captador, data_cadastro, nome, telefone, email, "
 					+ "periodo_contato, renda, valor_credito, prazo_consorcio, valor_parcela, "
@@ -230,7 +225,6 @@ angular.module("db", [ "ngCordova" ])
 		marcarIndicacaoTransmitida: function(id) {
 			var d = $q.defer();
 			$ionicPlatform.ready(function() {
-				console.warn("marcarIndicacaoTransmitida");
 				var db = $cordovaSQLite.openDB(config());
 				var sql = "update indicacao set transmitida = ? where id_indicacao = ?";
 				var args = [1, id];

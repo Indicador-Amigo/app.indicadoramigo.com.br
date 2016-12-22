@@ -4,7 +4,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 	$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, $state, $http, usuario, db, transmissao) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, $ionicHistory, $state, $http, usuario, db, transmissao) {
 	// Executar ao exibir a view
 	$scope.$on("$ionicView.beforeEnter", function(event, data) {
 		// Login
@@ -30,6 +30,9 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 					});
 				}
 			}, function() {
+				$ionicHistory.nextViewOptions({
+					disableBack: true
+				});
 				$state.go("app.login");
 			});
 		}
@@ -42,7 +45,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 	};
 })
 
-.controller('LoginCtrl', function($scope, $ionicPopup, $ionicLoading, $http, $state, db, transmissao) {
+.controller('LoginCtrl', function($scope, $ionicPopup, $ionicLoading, $ionicHistory, $http, $state, db, transmissao) {
 	$scope.form = {
 		email: "",
 		senha: ""
@@ -65,6 +68,9 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 			if (response.data.status) {
 				db.gravarUsuario(response.data).then(function() {
 					transmissao.iniciar();
+					$ionicHistory.nextViewOptions({
+						disableBack: true
+					});
 					$state.go("app.home", {}, {location:true, reload: true});
 				}, function() {
 					$ionicPopup.alert({
@@ -344,4 +350,102 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 			});
 		}
 	});
+})
+
+.controller('ReversaListCtrl', function($scope, $ionicPopup, $ionicLoading, $http) {
+	$scope.lista = [];
+	
+	$scope.$on("$ionicView.beforeEnter", function(event, data) {
+		if (data.stateName == "app.reversaList") {
+			$ionicLoading.show({
+				template: '<p>Carregando...</p><ion-spinner></ion-spinner>'
+	        });
+			var url = URL_API + "/reversaList.php";
+			$http.post(url, $.param({id_usuario: $scope.usuario.id_usuario})).then(function(response) {
+				$scope.lista = response.data.lista;
+			}).finally(function() {
+				$ionicLoading.hide();
+			});
+		}
+	});
+})
+
+.controller('ReversaEditCtrl', function($scope, $stateParams, $ionicPopup, $ionicLoading, $ionicHistory, $http) {
+	$scope.reversa = {};
+	
+	$scope.$on("$ionicView.beforeEnter", function(event, data) {
+		if (data.stateName == "app.reversaEdit") {
+			$ionicLoading.show({
+				template: '<p>Carregando...</p><ion-spinner></ion-spinner>'
+	        });
+			var url = URL_API + "/reversaList.php";
+			var dados = $.param({
+				id_usuario: $scope.usuario.id_usuario,
+				id_reversa: $stateParams.idReversa
+			});
+			$http.post(url, dados).then(function(response) {
+				if (response.data.lista.length == 1) {
+					$scope.reversa = response.data.lista[0];
+				} else {
+					$ionicHistory.nextViewOptions({
+						disableBack: true
+					});
+					$state.go("app.reversaList", {}, {location:true, reload: true});
+				}
+			}).finally(function() {
+				$ionicLoading.hide();
+			});
+		}
+	});
+	
+	$scope.alterar = function(codSit) {
+		var dscSit;
+		switch (codSit) {
+		case "P":
+			dscSit = "Pendente";
+			break;
+		case "R":
+			dscSit = "Recusada";
+			break;
+		case "C":
+			dscSit = "Confirmada";
+			break;
+		default:
+			return;
+		}
+		$ionicPopup.confirm({
+			title : 'Confirmação',
+			template : 'A indicação será alterada para ' + dscSit + '.',
+			cancelText : 'Cancelar',
+			cancelType : 'button-positive',
+			okText : 'Ok',
+			okType : 'button-positive'
+		}).then(function(res) {
+			if (!res)
+				return;
+			$ionicLoading.show({
+				template: '<p>Processando...</p><ion-spinner></ion-spinner>'
+	        });
+			var url = URL_API + "/reversaEdit.php";
+			var dados = $.param({
+				id_usuario: $scope.usuario.id_usuario,
+				id_reversa: $stateParams.idReversa,
+				situacao: codSit
+			});
+			$http.post(url, dados).then(function(response) {
+				if (response.data.status) {
+					$ionicHistory.goBack();
+				} else {
+					$ionicPopup.alert({
+						title : 'Erro',
+						template : response.data.erro,
+						okText : 'Ok',
+						okType : 'button-positive'
+					});
+				}
+			}).finally(function() {
+				$ionicLoading.hide();
+			});
+		});
+	};
 })

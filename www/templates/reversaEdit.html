@@ -1,0 +1,40 @@
+<ion-view ng-controller="ReversaEditCtrl" view-title="Indicação Reversa">
+	<ion-content>
+		<form onsubmit="return false">
+			<div class="list">
+				<div class="item item-divider item-text-wrap">
+					Carta de Crédito Aprovada
+				</div>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Código</span>
+					<input type="text" ng-model="reversa.id_reversa" disabled="disabled">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Nome Completo</span>
+					<input type="text" ng-model="reversa.nome" disabled="disabled">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Telefone</span>
+					<input type="text" ng-model="reversa.telefone" disabled="disabled">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Email</span>
+					<input type="text" ng-model="reversa.email" disabled="disabled">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Valor do Crédito</span>
+					<input type="text" value="R$ {{reversa.valor_credito}}" disabled="disabled">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Situação</span>
+					<input type="text" ng-model="reversa.situacao_dsc" disabled="disabled">
+				</label>
+				<div class="item">
+					<button class="button button-block button-positive" type="button" ng-show="reversa.situacao == 'T'" ng-click="alterar('P')">Alterar Para Pendente</button>
+					<button class="button button-block button-positive" type="button" ng-show="reversa.situacao == 'T'" ng-click="alterar('R')">Alterar Para Recusada</button>
+					<button class="button button-block button-positive" type="button" ng-show="reversa.situacao == 'P'" ng-click="alterar('C')">Alterar Para Concluída</button>
+				</div>
+			</div>
+		</form>
+	</ion-content>
+</ion-view>
