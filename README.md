@@ -1,1 +1,0 @@
-1 – Inserir o “esqueci a senha” no app
