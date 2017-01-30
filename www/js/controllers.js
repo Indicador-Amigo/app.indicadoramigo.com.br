@@ -345,10 +345,8 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 			ionicAlert($ionicPopup, "Erro", "O telefone é inválido.");
 			return;
 		}
-		if ($scope.form.email.length == 0) {
-			ionicAlert($ionicPopup, "Erro", "O campo Email é obrigatório.");
-			return;
-		} else if (!$scope.form.email.match(/^[a-z0-9]+([._-][a-z0-9]+)*@[a-z0-9]+([._-][a-z0-9]+)*\.[a-z]{2,5}$/i)) {
+		if ($scope.form.email.length > 0 
+				&& !$scope.form.email.match(/^[a-z0-9]+([._-][a-z0-9]+)*@[a-z0-9]+([._-][a-z0-9]+)*\.[a-z]{2,5}$/i)) {
 			ionicAlert($ionicPopup, "Erro", "O email é inválido.");
 			return;
 		}
