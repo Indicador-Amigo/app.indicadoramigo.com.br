@@ -159,15 +159,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 		}
 	})
 
-	.state('app.painel', {
-		url: '/painel',
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/painel.html'
-			}
-		}
-	})
-
 	.state('app.perfil', {
 		url: '/perfil',
 		views: {
@@ -182,35 +173,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 		views: {
 			'menuContent': {
 				templateUrl: 'templates/sobre.html'
-			}
-		}
-	})
-
-	.state('app.search', {
-		url: '/search',
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/search.html'
-			}
-		}
-	})
-
-	.state('app.playlists', {
-		url: '/playlists',
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/playlists.html',
-				controller: 'PlaylistsCtrl'
-			}
-		}
-	})
-
-	.state('app.single', {
-		url: '/playlists/:playlistId',
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/playlist.html',
-				controller: 'PlaylistCtrl'
 			}
 		}
 	});

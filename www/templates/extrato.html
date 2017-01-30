@@ -2,18 +2,18 @@
 	<ion-content>
 		<div class="card list">
 			<div class="item item-divider item-positive">
-				Comissão Disponível
+				Valor a Receber
 			</div>
 			<div class="item item-divider item-text-wrap">
-				<p>Aqui constará o valor da comissão total calculada a partir da quantidade de indicações efetuadas no período indicado abaixo.</p>
+				<p>Aqui constará o valor total a receber no atual período de apuração, calculado a partir da quantidade de indicações efetivadas no período.</p>
 			</div>
 			<div class="item item-text-wrap" ng-show="listaDisponiveis.length == 0">
-				<p>Você não possui comissão a receber.</p>
+				<p>Você não possui valor a receber.</p>
 			</div>
 			<div class="item item-text-wrap" ng-repeat="obj in listaDisponiveis">
 				<p>Data <span class="item-note" style="color: #444;">{{obj.data_competencia}}</span>
 				<br>
-				Indicações Efetuadas <span class="item-note" style="color: #444;">{{obj.indicacoes}}</span>
+				Indicações Efetivadas <span class="item-note" style="color: #444;">{{obj.indicacoes}}</span>
 				<br>
 				Fechamento em <span class="item-note" style="color: #444;">{{obj.data_situacao}}</span>
     			<br>
@@ -22,15 +22,15 @@
 		</div>
 		<div class="card list">
 			<div class="item item-divider item-positive">
-				Comissão Recebida
+				Valor Recebido
 			</div>
 			<div class="item item-text-wrap" ng-show="listaPagas.length == 0">
-				<p>Você não recebeu pagamento de comissão recentemente.</p>
+				<p>Você não recebeu pagamento recentemente.</p>
 			</div>
 			<div class="item item-text-wrap" ng-repeat="obj in listaPagas">
 				<p>Data <span class="item-note" style="color: #444;">{{obj.data_competencia}}</span>
 				<br>
-				Indicações Efetuadas <span class="item-note" style="color: #444;">{{obj.indicacoes}}</span>
+				Indicações Efetivadas <span class="item-note" style="color: #444;">{{obj.indicacoes}}</span>
 				<br>
 				Pago em <span class="item-note" style="color: #444;">{{obj.data_situacao}}</span>
     			<br>
