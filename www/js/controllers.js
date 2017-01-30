@@ -7,8 +7,10 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, $ionicHistory, $state, $http, usuario, db, transmissao) {
 	// Executar ao exibir a view
 	$scope.$on("$ionicView.beforeEnter", function(event, data) {
+		$scope.currentState = $state.$current;
+		
 		// Login
-		if (data.stateName != "app.login" && data.stateName != "app.cadastro") {
+		if (data.stateName != "app.login" && data.stateName != "app.cadastro" && data.stateName != "app.recuperarSenha") {
 			usuario.login().then(function() {
 				console.warn("Usuário: " + $scope.usuario.nome);
 				transmissao.iniciar();
@@ -103,6 +105,56 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 	$scope.cadastrar = function() {
 		$state.go("app.cadastro");
 	};
+	
+	$scope.recuperarSenha = function() {
+		$state.go("app.recuperarSenha");
+	};
+})
+
+.controller('RecuperarSenhaCtrl', function($scope, $ionicPopup, $ionicLoading, $ionicHistory, $http, $state, db, transmissao) {
+	$scope.form = {
+		email: ""
+	};
+
+	$scope.validar = function() {
+		$ionicLoading.show({
+			template: '<p>Processando...</p><ion-spinner></ion-spinner>'
+        });
+		var sUrl = URL_API + "/recuperarSenha.php";
+		var dados = $.param($scope.form);
+		$http({
+			method: 'POST',
+			url: sUrl,
+			data: dados,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(function(response) {
+			$ionicLoading.hide();
+			if (response.data.status) {
+				$ionicPopup.alert({
+					title : 'Verifique Seu Email',
+					template : response.data.mensagem,
+					okText : 'Ok',
+					okType : 'button-positive'
+				});
+			} else {
+				$ionicPopup.alert({
+					title : 'Erro',
+					template : response.data.erros[0],
+					okText : 'Ok',
+					okType : 'button-positive'
+				});
+			}
+		}, function(msg) {
+			error("login", msg);
+			$ionicLoading.hide();
+			$ionicPopup.alert({
+				title : 'Erro',
+				template : 'Ocorreu um erro inesperado.',
+				okText : 'Ok',
+				okType : 'button-positive'
+			});
+		});
+	};
 })
 
 .controller('CadastroCtrl', function($scope, $ionicPopup, $ionicLoading, $http, $state, db) {
@@ -124,7 +176,8 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 		banco: "",
 		agencia: "",
 		tipoConta: "",
-		conta: ""
+		conta: "",
+		idRevenda: null
 	};
 	
 	$scope.cadastrar = function() {
@@ -180,7 +233,11 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 		bairro: "",
 		cidade: "",
 		uf: "",
-		cep: ""
+		cep: "",
+		senhaAtual: "",
+		novaSenha: "",
+		confirmeNovaSenha: "",
+		idRevenda: null
 	};
 	$scope.$on("$ionicView.beforeEnter", function(event, data) {
 		if (data.stateName == "app.perfil") {
@@ -200,7 +257,11 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 					bairro: dados.bairro,
 					cidade: dados.cidade,
 					uf: dados.uf,
-					cep: dados.cep
+					cep: dados.cep,
+					idRevenda: dados.id_revenda,
+					senhaAtual: "",
+					novaSenha: "",
+					confirmeNovaSenha: ""
 				};
 			});
 		}

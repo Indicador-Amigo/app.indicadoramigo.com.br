@@ -3,12 +3,20 @@
 		<form ng-submit="alterar()">
 			<div class="list">
 				<div class="item item-text-wrap">
-					Código
+					Seu Código
 					<span class="badge badge-positive">{{form.idUsuario}}</span>
 				</div>
+				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
+					<span class="input-label">Código da Revenda</span>
+					<input type="number" ng-model="form.idRevenda" placeholder="Informe o código da revenda" maxlength="10">
+				</label>
 				<div class="item item-divider">
 					Dados Pessoais
 				</div>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Email</span>
+					<input type="email" ng-model="form.email" placeholder="Informe o seu email" maxlength="60">
+				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label" ng-show="form.perfil == 'C'">Nome Completo</span>
 					<span class="input-label" ng-show="form.perfil == 'R'">Contato / Responsável</span>
@@ -93,6 +101,23 @@
 					<span class="input-label">CEP</span>
 					<input type="text" placeholder="" ng-model="form.cep">
 				</label>
+				
+				<div class="item item-divider">
+					Alterar Senha
+				</div>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Senha Atual</span>
+					<input type="password" placeholder="" ng-model="form.senhaAtual">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Nova Senha</span>
+					<input type="password" placeholder="" ng-model="form.novaSenha" ng-disabled="form.senhaAtual.length < 6">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Confirme a Nova Senha</span>
+					<input type="password" placeholder="" ng-model="form.confirmeNovaSenha" ng-disabled="form.novaSenha.length < 6">
+				</label>
+				
 				<div class="item">
 					<button class="button button-block button-positive" type="submit">Alterar</button>
 				</div>

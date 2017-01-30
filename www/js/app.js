@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'db'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $state, $ionicHistory, usuario) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
@@ -18,6 +18,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 			// org.apache.cordova.statusbar required
 			StatusBar.styleDefault();
 		}
+		$ionicHistory.nextViewOptions({
+			disableBack: true
+		});
+		usuario.login().then(function() {
+			$state.go("app.home");
+		}, function() {
+			$state.go("app.login");
+		});
 	});
 })
 
@@ -36,6 +44,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 		views: {
 			'menuContent': {
 				templateUrl: 'templates/login.html'
+			}
+		}
+	})
+
+	.state('app.recuperarSenha', {
+		url: '/recuperarSenha',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/recuperarSenha.html'
 			}
 		}
 	})
@@ -197,6 +214,4 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 			}
 		}
 	});
-
-	$urlRouterProvider.otherwise('/app/home');
 });

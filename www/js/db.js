@@ -6,7 +6,7 @@ var sqlCreateTables = [
 		+ "data_nascimento date, endereco text,"
 		+ "numero text, complemento text, bairro text,"
 		+ "cidade text, uf text, cep text, banco text,"
-		+ "agencia text, tipo_conta text, conta text)",
+		+ "agencia text, tipo_conta text, conta text, id_revenda integer)",
 		
 		"CREATE TABLE IF NOT EXISTS indicacao ("
 		+ "id_indicacao integer primary key, "
@@ -25,11 +25,11 @@ var sqlCreateTables = [
 ];
 var sqlInsertUsuario = "insert into usuario(id_usuario, nome, email, perfil, cpf, rg,"
 		+ " celular, data_nascimento, endereco, numero, complemento, bairro,"
-		+ " cidade, uf, cep, banco, agencia, tipo_conta, conta)"
-		+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		+ " cidade, uf, cep, banco, agencia, tipo_conta, conta, id_revenda)"
+		+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 var sqlUpdateUsuario = "update usuario set nome=?, email=?, cpf=?, rg=?,"
 	+ " celular=?, data_nascimento=?, endereco=?, numero=?, complemento=?, bairro=?,"
-	+ " cidade=?, uf=?, cep=? where id_usuario=?";
+	+ " cidade=?, uf=?, cep=?, id_revenda=? where id_usuario=?";
 
 angular.module("db", [ "ngCordova" ])
 .run(function($ionicPlatform, $cordovaSQLite) {
@@ -110,7 +110,8 @@ angular.module("db", [ "ngCordova" ])
 				            dados.banco,
 				            dados.agencia,
 				            dados.tipo_conta,
-				            dados.conta
+				            dados.conta,
+				            dados.id_revenda
 				];
 				$cordovaSQLite.execute(db, sqlInsertUsuario, args).then(function() {
 					d.resolve();
@@ -140,6 +141,7 @@ angular.module("db", [ "ngCordova" ])
 				            dados.cidade,
 				            dados.uf,
 				            dados.cep,
+				            dados.idRevenda,
 				            dados.idUsuario
 				];
 				$cordovaSQLite.execute(db, sqlUpdateUsuario, args).then(function() {

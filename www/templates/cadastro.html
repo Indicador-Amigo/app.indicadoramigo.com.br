@@ -9,6 +9,10 @@
 						<option value="R">Revenda</option>
 					</select>
 				</label>
+				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
+					<span class="input-label">Código da Revenda</span>
+					<input type="number" ng-model="form.idRevenda" placeholder="Informe o código da revenda" maxlength="10">
+				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label" ng-show="form.perfil == 'C'">Nome Completo</span>
 					<span class="input-label" ng-show="form.perfil == 'R'">Contato / Responsável</span>

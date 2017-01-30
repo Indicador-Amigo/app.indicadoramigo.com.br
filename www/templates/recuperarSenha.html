@@ -1,0 +1,15 @@
+<ion-view ng-controller="RecuperarSenhaCtrl" view-title="Recuperar Senha">
+	<ion-content>
+		<form ng-submit="validar()">
+			<div class="list">
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Informe seu email</span>
+					<input type="email" ng-model="form.email">
+				</label>
+				<label class="item">
+					<button class="button button-block button-positive" type="submit">Validar</button>
+				</label>
+			</div>
+		</form>
+	</ion-content>
+</ion-view>
