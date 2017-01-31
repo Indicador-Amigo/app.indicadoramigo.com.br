@@ -1,6 +1,6 @@
 {
   "name": "Indicador Amigo",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "Indicador Amigo",
   "dependencies": {
     "gulp": "^3.5.6",

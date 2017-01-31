@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="br.com.indicadoramigo" version="1.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="br.com.indicadoramigo" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Indicador Amigo</name>
   <description>
         Aplicativo para indicação de consórcios.
     </description>
-  <author email="rrtv.indicadoramigo@gmail.com" href="http://indicadoramigo.com.br">
+  <author email="contato@indicadoramigo.com.br" href="http://indicadoramigo.com.br">
       Tulho Melo
     </author>
   <content src="index.html"/>
