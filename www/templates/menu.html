@@ -1,6 +1,6 @@
 <ion-side-menus enable-menu-with-back-views="false">
 	<ion-side-menu-content>
-		<ion-nav-bar class="bar-positive">
+		<ion-nav-bar class="bar-verdeIndAmig">
 			<ion-nav-back-button>
 			</ion-nav-back-button>
 
@@ -12,14 +12,14 @@
 	</ion-side-menu-content>
 
 	<ion-side-menu side="left" ng-show="currentState != 'app.login'">
-		<ion-header-bar class="bar-positive">
+		<ion-header-bar class="bar-verdeIndAmig">
 			<h1 class="title">Menu</h1>
 		</ion-header-bar>
 		<ion-content>
 			<ion-list>
 				<div class="item item-text-wrap">
 					<h2 ng-if="usuario.perfil == 'C'">Indicador</h2>
-					<span class="badge badge-positive">{{usuario.id_usuario}}</span>
+					<span class="badge badge-verdeIndAmig">{{usuario.id_usuario}}</span>
 					<h2 style="margin-top: 10px;">{{usuario.nome}}</h2>
 				</div>
 				<ion-item menu-close href="#/app" class="item-icon-left">

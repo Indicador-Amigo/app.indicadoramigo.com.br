@@ -79,7 +79,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 						title : 'Erro',
 						template : 'Ocorreu um erro inesperado.',
 						okText : 'Ok',
-						okType : 'button-positive'
+						okType : 'button-verdeIndAmig'
 					});
 				});
 			} else {
@@ -87,7 +87,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 					title : 'Erro',
 					template : response.data.erros[0],
 					okText : 'Ok',
-					okType : 'button-positive'
+					okType : 'button-verdeIndAmig'
 				});
 			}
 		}, function(msg) {
@@ -97,7 +97,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 				title : 'Erro',
 				template : 'Ocorreu um erro inesperado.',
 				okText : 'Ok',
-				okType : 'button-positive'
+				okType : 'button-verdeIndAmig'
 			});
 		});
 	};
@@ -134,14 +134,14 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 					title : 'Verifique Seu Email',
 					template : response.data.mensagem,
 					okText : 'Ok',
-					okType : 'button-positive'
+					okType : 'button-verdeIndAmig'
 				});
 			} else {
 				$ionicPopup.alert({
 					title : 'Erro',
 					template : response.data.erros[0],
 					okText : 'Ok',
-					okType : 'button-positive'
+					okType : 'button-verdeIndAmig'
 				});
 			}
 		}, function(msg) {
@@ -151,7 +151,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 				title : 'Erro',
 				template : 'Ocorreu um erro inesperado.',
 				okText : 'Ok',
-				okType : 'button-positive'
+				okType : 'button-verdeIndAmig'
 			});
 		});
 	};
@@ -193,7 +193,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 					title : 'Sucesso',
 					template : 'Seu cadastro foi efetuado. Confira seu email para ativar.',
 					okText : 'Ok',
-					okType : 'button-positive'
+					okType : 'button-verdeIndAmig'
 				}).then(function() {
 					$state.go("app.login");
 				});
@@ -202,7 +202,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 					title : 'Erro',
 					template : response.data.erros[0],
 					okText : 'Ok',
-					okType : 'button-positive'
+					okType : 'button-verdeIndAmig'
 				});
 			}
 		}, function(error) {
@@ -211,7 +211,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 				title : 'Erro',
 				template : 'Ocorreu um erro inesperado.',
 				okText : 'Ok',
-				okType : 'button-positive'
+				okType : 'button-verdeIndAmig'
 			});
 		});
 	};
@@ -281,7 +281,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 					title : 'Sucesso',
 					template : 'Seu cadastro foi atualizado.',
 					okText : 'Ok',
-					okType : 'button-positive'
+					okType : 'button-verdeIndAmig'
 				}).then(function() {
 					$ionicHistory.nextViewOptions({
 						disableBack: true
@@ -293,7 +293,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 					title : 'Erro',
 					template : response.data.erros[0],
 					okText : 'Ok',
-					okType : 'button-positive'
+					okType : 'button-verdeIndAmig'
 				});
 			}
 		}, function(error) {
@@ -302,7 +302,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 				title : 'Erro',
 				template : 'Ocorreu um erro inesperado.',
 				okText : 'Ok',
-				okType : 'button-positive'
+				okType : 'button-verdeIndAmig'
 			});
 		});
 	};
@@ -358,9 +358,9 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 			title : 'Confirmação',
 			template : 'Deseja efetivar a indicação?',
 			cancelText : 'Cancelar',
-			cancelType : 'button-positive',
+			cancelType : 'button-verdeIndAmig',
 			okText : 'Ok',
-			okType : 'button-positive'
+			okType : 'button-verdeIndAmig'
 		}).then(function(res) {
 			if (!res) 
 				return;
@@ -469,9 +469,9 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 			title : 'Confirmação',
 			template : 'A indicação será alterada para ' + dscSit + '.',
 			cancelText : 'Cancelar',
-			cancelType : 'button-positive',
+			cancelType : 'button-verdeIndAmig',
 			okText : 'Ok',
-			okType : 'button-positive'
+			okType : 'button-verdeIndAmig'
 		}).then(function(res) {
 			if (!res)
 				return;
@@ -492,7 +492,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 						title : 'Erro',
 						template : response.data.erro,
 						okText : 'Ok',
-						okType : 'button-positive'
+						okType : 'button-verdeIndAmig'
 					});
 				}
 			}).finally(function() {

@@ -1,9 +1,9 @@
 // -------------------------------------------------------------------
 // URL do serviço - Alterar para produção
 // -------------------------------------------------------------------
-// var URL_API = "http://sistema.indicadoramigo.com.br/api/v1";
+var URL_API = "http://sistema.indicadoramigo.com.br/api/v1";
 //var URL_API = "http://192.168.1.100/indicadoramigo/api/v1";
-var URL_API = "http://192.168.15.20/api/v1";
+// var URL_API = "http://192.168.15.20/api/v1";
 
 // Funções utilitárias para logging
 (function(scope) {
@@ -24,7 +24,7 @@ var URL_API = "http://192.168.15.20/api/v1";
 			title : tit,
 			template : msg,
 			okText : 'Ok',
-			okType : 'button-positive'
+			okType : 'button-verdeIndAmig'
 		});
 	};
 	function writeLogObj(type, obj) {
