@@ -11,39 +11,39 @@
 				</label>
 				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
 					<span class="input-label">Código da Revenda</span>
-					<input type="number" ng-model="form.idRevenda" placeholder="Informe o código da revenda" maxlength="10">
+					<input type="number" ng-model="form.idRevenda" placeholder="(Opcional) Informe o código da revenda" maxlength="10">
 				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label" ng-show="form.perfil == 'C'">Nome Completo</span>
 					<span class="input-label" ng-show="form.perfil == 'R'">Contato / Responsável</span>
-					<input type="text" ng-model="form.nome" placeholder="Informe o nome" maxlength="60">
+					<input type="text" ng-model="form.nome" placeholder="(Obrigatório) Informe o nome" maxlength="60">
 				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label" ng-show="form.perfil == 'C'">CPF</span>
 					<span class="input-label" ng-show="form.perfil == 'R'">CNPJ</span>
-					<input type="number" ng-model="form.cpfCnpj" ng-show="form.perfil == 'C'" placeholder="Informe o CPF" maxlength="11">
-					<input type="number" ng-model="form.cpfCnpj" ng-show="form.perfil == 'R'" placeholder="Informe o CNPJ" maxlength="14">
+					<input type="number" ng-model="form.cpfCnpj" ng-show="form.perfil == 'C'" placeholder="(Opcional) Informe o CPF" maxlength="11">
+					<input type="number" ng-model="form.cpfCnpj" ng-show="form.perfil == 'R'" placeholder="(Opcional) Informe o CNPJ" maxlength="14">
 				</label>
-				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
+<!-- 				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
 					<span class="input-label">RG</span>
 					<input type="text" ng-model="form.rg" placeholder="Informe o RG" maxlength="20">
-				</label>
+				</label> -->
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Email</span>
-					<input type="email" ng-model="form.email" placeholder="Informe o email" maxlength="60">
+					<input type="email" ng-model="form.email" placeholder="(Obrigatório) Informe o email" maxlength="60">
 				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label" ng-show="form.perfil == 'C'">Celular</span>
 					<span class="input-label" ng-show="form.perfil == 'R'">Telefone</span>
-					<input type="tel" ng-model="form.telefone" placeholder="Informe o número" maxlength="15">
+					<input type="tel" ng-model="form.telefone" placeholder="(Opcional) Informe o número" maxlength="15">
 				</label>
-				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
+<!-- 				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
 					<span class="input-label">Data de Nascimento</span>
 					<input type="date" ng-model="form.dataNascimento" placeholder="Informe o data de nascimento" maxlength="10">
-				</label>
+				</label> -->
 	
 				<item class="item item-divider">Endereço</item>
-				<label class="item item-input item-stacked-label">
+<!-- 				<label class="item item-input item-stacked-label">
 					<span class="input-label">CEP</span>
 					<input type="number" ng-model="form.cep" placeholder="Informe o CEP" maxlength="9">
 				</label>
@@ -62,10 +62,10 @@
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Bairro</span>
 					<input type="text" ng-model="form.bairro" placeholder="Informe o bairro" maxlength="45">
-				</label>
+				</label> -->
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Cidade</span>
-					<input type="text" ng-model="form.cidade" placeholder="Informe a cidade" maxlength="45">
+					<input type="text" ng-model="form.cidade" placeholder="(Obrigatório) Informe a cidade" maxlength="45">
 				</label>
 				<label class="item item-input item-select">
 					<div class="input-label">UF</div>
@@ -100,7 +100,7 @@
 					</select>
 				</label>
 	
-				<item class="item item-divider">Dados Bancários</item>
+<!-- 				<item class="item item-divider">Dados Bancários</item>
 				<label class="item item-input item-select">
 					<div class="input-label">Banco</div>
 					<select ng-model="form.banco">
@@ -128,7 +128,7 @@
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Conta</span>
 					<input type="number" ng-model="form.conta" placeholder="Informe o número da conta" maxlength="45">
-				</label>
+				</label> -->
 				<div class="item">
 					<button class="button button-block button-verdeIndAmig" type="submit">Cadastrar</button>
 				</div>
