@@ -5,17 +5,17 @@
 				<label class="item item-input item-stacked-label item-select">
 					<span class="input-label">Perfil</span>
 					<select ng-model="form.perfil">
-						<option value="C">Captador</option>
-						<option value="R">Revenda</option>
+						<option value="C">Pessoa Física</option>
+						<option value="R">Pessoa Jurídica</option>
 					</select>
 				</label>
 				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
-					<span class="input-label">Código da Revenda</span>
-					<input type="number" ng-model="form.idRevenda" placeholder="(Opcional) Informe o código da revenda" maxlength="10">
+					<span class="input-label">Código da Pessoa Jurídica</span>
+					<input type="number" ng-model="form.idRevenda" placeholder="(Opcional) Informe o código da empresa" maxlength="10">
 				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label" ng-show="form.perfil == 'C'">Nome Completo</span>
-					<span class="input-label" ng-show="form.perfil == 'R'">Contato / Responsável</span>
+					<span class="input-label" ng-show="form.perfil == 'R'">Nome / Razão Social</span>
 					<input type="text" ng-model="form.nome" placeholder="(Obrigatório) Informe o nome" maxlength="60">
 				</label>
 				<label class="item item-input item-stacked-label">
@@ -35,7 +35,7 @@
 				<label class="item item-input item-stacked-label">
 					<span class="input-label" ng-show="form.perfil == 'C'">Celular</span>
 					<span class="input-label" ng-show="form.perfil == 'R'">Telefone</span>
-					<input type="tel" ng-model="form.telefone" placeholder="(Opcional) Informe o número" maxlength="15">
+					<input type="tel" ng-model="form.telefone" placeholder="(Opcional) Informe o número com DDD" maxlength="15">
 				</label>
 <!-- 				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
 					<span class="input-label">Data de Nascimento</span>

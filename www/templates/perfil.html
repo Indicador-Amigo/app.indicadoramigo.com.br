@@ -7,8 +7,8 @@
 					<span class="badge badge-verdeIndAmig">{{form.idUsuario}}</span>
 				</div>
 				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
-					<span class="input-label">Código da Revenda</span>
-					<input type="number" ng-model="form.idRevenda" placeholder="Informe o código da revenda" maxlength="10">
+					<span class="input-label">Código da Pessoa Jurídica</span>
+					<input type="number" ng-model="form.idRevenda" placeholder="(Opcional) Informe o código da empresa" maxlength="10">
 				</label>
 				<div class="item item-divider">
 					Dados Pessoais
@@ -19,8 +19,8 @@
 				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label" ng-show="form.perfil == 'C'">Nome Completo</span>
-					<span class="input-label" ng-show="form.perfil == 'R'">Contato / Responsável</span>
-					<input type="text" placeholder="" ng-model="form.nome">
+					<span class="input-label" ng-show="form.perfil == 'R'">Nome / Razão Social</span>
+					<input type="text" ng-model="form.nome" placeholder="Informe o nome" maxlength="60">
 				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label" ng-show="form.perfil == 'C'">CPF</span>
@@ -35,7 +35,7 @@
 				<label class="item item-input item-stacked-label">
 					<span class="input-label" ng-show="form.perfil == 'C'">Celular</span>
 					<span class="input-label" ng-show="form.perfil == 'R'">Telefone</span>
-					<input type="tel" ng-model="form.telefone" placeholder="Informe o número" maxlength="15">
+					<input type="tel" ng-model="form.telefone" placeholder="Informe o número de DDD" maxlength="15">
 				</label>
 				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
 					<span class="input-label">Data de Nascimento</span>
@@ -63,7 +63,7 @@
 				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Cidade</span>
-					<input type="text" placeholder="" ng-model="form.cidade">
+					<input type="text" placeholder="Informe a Cidade" ng-model="form.cidade">
 				</label>
 				<label class="item item-input item-select">
 					<span class="input-label">UF</span>
@@ -99,9 +99,39 @@
 				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">CEP</span>
-					<input type="text" placeholder="" ng-model="form.cep">
+					<input type="text" placeholder="Informe o CEP" ng-model="form.cep">
 				</label>
-				
+
+			 	<item class="item item-divider">Dados Bancários</item>
+				<label class="item item-input item-select">
+					<div class="input-label">Banco</div>
+					<select ng-model="form.banco">
+						<option>Banco do Brasil</option>
+						<option>Bradesco</option>
+						<option>Caixa</option>
+						<option>HSBC</option>
+						<option>Itaú</option>
+						<option>Mercantil</option>
+						<option>Santander</option>
+						<option>SICOOB</option>
+					</select>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Agência</span>
+					<input type="text" ng-model="form.agencia" placeholder="Informe o número agência com dígito" maxlength="45">
+				</label>
+				<label class="item item-input item-select">
+					<div class="input-label">Tipo de Conta</div>
+					<select ng-model="form.tipoConta">
+						<option>Corrente</option>
+						<option>Poupança</option>
+					</select>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Conta</span>
+					<input type="text" ng-model="form.conta" placeholder="Informe o número da conta" maxlength="45">
+				</label>
+
 				<div class="item item-divider">
 					Alterar Senha
 				</div>
