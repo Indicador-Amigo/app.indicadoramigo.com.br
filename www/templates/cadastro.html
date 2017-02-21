@@ -9,20 +9,16 @@
 						<option value="R">Pessoa Jurídica</option>
 					</select>
 				</label>
-				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
-					<span class="input-label">Código da Pessoa Jurídica</span>
-					<input type="number" ng-model="form.idRevenda" placeholder="(Opcional) Informe o código da empresa" maxlength="10">
-				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label" ng-show="form.perfil == 'C'">Nome Completo</span>
 					<span class="input-label" ng-show="form.perfil == 'R'">Nome / Razão Social</span>
-					<input type="text" ng-model="form.nome" placeholder="(Obrigatório) Informe o nome" maxlength="60">
+					<input type="text" ng-model="form.nome" placeholder="Preenchimento Obrigatório" maxlength="60">
 				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label" ng-show="form.perfil == 'C'">CPF</span>
 					<span class="input-label" ng-show="form.perfil == 'R'">CNPJ</span>
-					<input type="number" ng-model="form.cpfCnpj" ng-show="form.perfil == 'C'" placeholder="(Opcional) Informe o CPF" maxlength="11">
-					<input type="number" ng-model="form.cpfCnpj" ng-show="form.perfil == 'R'" placeholder="(Opcional) Informe o CNPJ" maxlength="14">
+					<input type="number" ng-model="form.cpfCnpj" ng-show="form.perfil == 'C'" placeholder="Preenchimento Opcional" maxlength="11">
+					<input type="number" ng-model="form.cpfCnpj" ng-show="form.perfil == 'R'" placeholder="Preenchimento Opcional" maxlength="14">
 				</label>
 <!-- 				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
 					<span class="input-label">RG</span>
@@ -30,12 +26,12 @@
 				</label> -->
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Email</span>
-					<input type="email" ng-model="form.email" placeholder="(Obrigatório) Informe o email" maxlength="60">
+					<input type="email" ng-model="form.email" placeholder="Preenchimento Obrigatório" maxlength="60">
 				</label>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label" ng-show="form.perfil == 'C'">Celular</span>
 					<span class="input-label" ng-show="form.perfil == 'R'">Telefone</span>
-					<input type="tel" ng-model="form.telefone" placeholder="(Opcional) Informe o número com DDD" maxlength="15">
+					<input type="tel" ng-model="form.telefone" placeholder="Preenchimento Opcional" maxlength="15">
 				</label>
 <!-- 				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
 					<span class="input-label">Data de Nascimento</span>
@@ -65,7 +61,7 @@
 				</label> -->
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Cidade</span>
-					<input type="text" ng-model="form.cidade" placeholder="(Obrigatório) Informe a cidade" maxlength="45">
+					<input type="text" ng-model="form.cidade" placeholder="Preenchimento Obrigatório" maxlength="45">
 				</label>
 				<label class="item item-input item-select">
 					<div class="input-label">UF</div>
@@ -129,6 +125,13 @@
 					<span class="input-label">Conta</span>
 					<input type="number" ng-model="form.conta" placeholder="Informe o número da conta" maxlength="45">
 				</label> -->
+				<div class="item item-divider item-text-wrap">
+					<p><i class="icon ion-information-circled"></i>  Caso você seja vinculado a alguma empresa/associação, informe aqui o código.</p>
+				</div>
+				<label class="item item-input item-stacked-label" ng-show="form.perfil == 'C'">
+					<span class="input-label">Código da Pessoa Jurídica</span>
+					<input type="number" ng-model="form.idRevenda" placeholder="Preenchimento Opcional" maxlength="10">
+				</label>
 				<div class="item">
 					<button class="button button-block button-verdeIndAmig" type="submit">Cadastrar</button>
 				</div>
