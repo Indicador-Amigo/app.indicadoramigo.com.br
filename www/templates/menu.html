@@ -1,11 +1,11 @@
 <ion-side-menus enable-menu-with-back-views="false">
-	<ion-side-menu-content>
+	<ion-side-menu-content drag-content="currentState != 'app.login'">
 		<ion-nav-bar class="bar-verdeIndAmig">
 			<ion-nav-back-button>
 			</ion-nav-back-button>
 
 			<ion-nav-buttons side="left">
-				<button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-show="currentState != 'app.login'"></button>
+				<button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-show="currentState != 'app.login'" menu-close></button>
 			</ion-nav-buttons>
 		</ion-nav-bar>
 		<ion-nav-view name="menuContent"></ion-nav-view>

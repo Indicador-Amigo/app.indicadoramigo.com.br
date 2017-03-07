@@ -177,6 +177,8 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 		agencia: "",
 		tipoConta: "",
 		conta: "",
+		senha: "",
+		confirmSenha: "",
 		idRevenda: null
 	};
 	
@@ -191,7 +193,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services'])
 			if (response.data.status) {
 				$ionicPopup.alert({
 					title : 'Sucesso',
-					template : 'Seu cadastro foi efetuado. Confira seu email para ativar.',
+					template : 'Seu cadastro foi efetuado. Faça o login para usar o aplicativo.',
 					okText : 'Ok',
 					okType : 'button-verdeIndAmig'
 				}).then(function() {
